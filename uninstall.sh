@@ -7,12 +7,12 @@ if [ "$(id -u)" -eq 0 ]; then
   exit 1
 fi
 
-LABEL="local.cursor-approve-please"
+LABEL="local.cursor-attention"
 DOMAIN="gui/$(id -u)"
 PLIST="${HOME}/Library/LaunchAgents/${LABEL}.plist"
-DEST="${HOME}/.local/share/cursor-approve-please"
-CONFIG_DIR="${HOME}/.config/cursor-approve-please"
-STATE_DIR="${HOME}/.local/state/cursor-approve-please"
+DEST="${HOME}/.local/share/cursor-attention"
+CONFIG_DIR="${HOME}/.config/cursor-attention"
+STATE_DIR="${HOME}/.local/state/cursor-attention"
 
 launchctl bootout "${DOMAIN}/${LABEL}" 2>/dev/null || true
 rm -f "$PLIST"

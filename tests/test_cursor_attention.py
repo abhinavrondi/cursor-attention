@@ -6,7 +6,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-import approve_please as app
+import cursor_attention as app
 
 
 class MarkerTests(unittest.TestCase):
@@ -124,14 +124,14 @@ class ConfigTests(unittest.TestCase):
     def test_load_reads_the_section(self):
         with tempfile.TemporaryDirectory() as directory:
             path = os.path.join(directory, "config.ini")
-            Path(path).write_text("[approve-please]\nphrase = Ready\n", encoding="utf-8")
+            Path(path).write_text("[cursor-attention]\nphrase = Ready\n", encoding="utf-8")
             cfg = app.load_config(path)
         self.assertEqual(cfg.phrase, "Ready")
         self.assertEqual(cfg.delay_seconds, 15)
 
     def test_missing_explicit_file(self):
         with self.assertRaises(app.ConfigError):
-            app.load_config("/tmp/cursor-approve-please-missing-config.ini")
+            app.load_config("/tmp/cursor-attention-missing-config.ini")
 
     def test_env_path_is_discovered(self):
         previous = os.environ.get(app.ENV_CONFIG)

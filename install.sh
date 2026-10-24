@@ -8,12 +8,12 @@ if [ "$(id -u)" -eq 0 ]; then
 fi
 
 ROOT=$(CDPATH= cd -- "$(dirname "$0")" && pwd)
-DEST="${HOME}/.local/share/cursor-approve-please"
-CONFIG_DIR="${HOME}/.config/cursor-approve-please"
-STATE_DIR="${HOME}/.local/state/cursor-approve-please"
+DEST="${HOME}/.local/share/cursor-attention"
+CONFIG_DIR="${HOME}/.config/cursor-attention"
+STATE_DIR="${HOME}/.local/state/cursor-attention"
 AGENTS="${HOME}/Library/LaunchAgents"
-PLIST="${AGENTS}/local.cursor-approve-please.plist"
-LABEL="local.cursor-approve-please"
+PLIST="${AGENTS}/local.cursor-attention.plist"
+LABEL="local.cursor-attention"
 DOMAIN="gui/$(id -u)"
 PYTHON=$(command -v python3 || true)
 
@@ -23,8 +23,8 @@ if [ -z "$PYTHON" ]; then
 fi
 
 mkdir -p "$DEST" "$CONFIG_DIR" "$STATE_DIR" "$AGENTS"
-cp "$ROOT/approve_please.py" "$DEST/approve_please.py"
-chmod 755 "$DEST/approve_please.py"
+cp "$ROOT/cursor_attention.py" "$DEST/cursor_attention.py"
+chmod 755 "$DEST/cursor_attention.py"
 
 if [ ! -f "$CONFIG_DIR/config.ini" ]; then
   cp "$ROOT/config.example.ini" "$CONFIG_DIR/config.ini"
@@ -43,7 +43,7 @@ cat > "$PLIST" <<EOF
   <key>ProgramArguments</key>
   <array>
     <string>${PYTHON}</string>
-    <string>${DEST}/approve_please.py</string>
+    <string>${DEST}/cursor_attention.py</string>
   </array>
   <key>RunAtLoad</key>
   <true/>

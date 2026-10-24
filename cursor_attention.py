@@ -20,8 +20,8 @@ REQUESTED = b'reason="user-approval-requested"'
 RESUMED = b'reason="agent-loop-resumed"'
 MARKER_TAIL = max(len(REQUESTED), len(RESUMED)) - 1
 
-SECTION = "approve-please"
-ENV_CONFIG = "CURSOR_APPROVE_PLEASE_CONFIG"
+SECTION = "cursor-attention"
+ENV_CONFIG = "CURSOR_ATTENTION_CONFIG"
 
 DELAY_MIN = 0.0
 DELAY_MAX = 600.0
@@ -82,11 +82,11 @@ def _default_cursor_log_dir() -> str:
 
 
 def _default_state_dir() -> str:
-    return os.path.expanduser("~/.local/state/cursor-approve-please")
+    return os.path.expanduser("~/.local/state/cursor-attention")
 
 
 def _default_config_path() -> str:
-    return os.path.expanduser("~/.config/cursor-approve-please/config.ini")
+    return os.path.expanduser("~/.config/cursor-attention/config.ini")
 
 
 def discover_config_path() -> str | None:
@@ -163,7 +163,7 @@ class Config:
 
 
 def config_from_mapping(values: dict[str, str]) -> Config:
-    """Build settings from the approve-please keys. Missing keys use defaults."""
+    """Build settings from the cursor-attention keys. Missing keys use defaults."""
 
     def pick(key: str, default: str) -> str:
         raw = values.get(key, default)
@@ -416,10 +416,10 @@ def entry() -> None:
         if len(sys.argv) > 1 and sys.argv[1] == "--check":
             raise SystemExit(check(load_config()))
         if len(sys.argv) > 1 and sys.argv[1] in ("-h", "--help"):
-            print("Usage: approve_please.py [--check]")
+            print("Usage: cursor_attention.py [--check]")
             raise SystemExit(0)
         if len(sys.argv) > 1:
-            print("Usage: approve_please.py [--check]", file=sys.stderr)
+            print("Usage: cursor_attention.py [--check]", file=sys.stderr)
             raise SystemExit(2)
         main()
     except ConfigError as exc:

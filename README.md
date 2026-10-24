@@ -1,4 +1,4 @@
-# Approve please
+# Cursor attention
 
 A small Mac watcher. When Cursor shows an approval card and you do not click it, this says “Approve please,” then says it again until you do.
 
@@ -17,24 +17,24 @@ Cursor does not yet offer a hook for “waiting for approval,” so this watches
 ## Install
 
 ```sh
-git clone https://github.com/abhinavrondi/cursor-approve-please.git
-cd cursor-approve-please
+git clone https://github.com/abhinavrondi/cursor-attention.git
+cd cursor-attention
 ./install.sh
 ```
 
-That copies the script to `~/.local/share/cursor-approve-please/`, writes a login agent named `local.cursor-approve-please`, and starts it. Settings go to `~/.config/cursor-approve-please/config.ini` only when that file is missing.
+That copies the script to `~/.local/share/cursor-attention/`, writes a login agent named `local.cursor-attention`, and starts it. Settings go to `~/.config/cursor-attention/config.ini` only when that file is missing.
 
-If another approval watcher is already running, unload it first. Two watchers will both speak.
+If a login agent named `local.cursor-attention` is already loaded, install replaces it.
 
 Check the settings without playing a sound:
 
 ```sh
-python3 ~/.local/share/cursor-approve-please/approve_please.py --check
+python3 ~/.local/share/cursor-attention/cursor_attention.py --check
 ```
 
 ## Settings
 
-Edit `~/.config/cursor-approve-please/config.ini`. The example in this repo is `config.example.ini`.
+Edit `~/.config/cursor-attention/config.ini`. The example in this repo is `config.example.ini`.
 
 | Setting | Default | What it does |
 | --- | --- | --- |
@@ -51,12 +51,12 @@ Edit `~/.config/cursor-approve-please/config.ini`. The example in this repo is `
 After a change, reload the watcher:
 
 ```sh
-launchctl kickstart -k "gui/$(id -u)/local.cursor-approve-please"
+launchctl kickstart -k "gui/$(id -u)/local.cursor-attention"
 ```
 
-`CURSOR_APPROVE_PLEASE_CONFIG` can point at a different settings file. The login agent does not load your shell profile, so put day-to-day settings in the config file.
+`CURSOR_ATTENTION_CONFIG` can point at a different settings file. The login agent does not load your shell profile, so put day-to-day settings in the config file.
 
-The watcher log is `~/.local/state/cursor-approve-please/watcher.log`. It records start, schedule, cancel, and chime. It does not copy Cursor’s logs.
+The watcher log is `~/.local/state/cursor-attention/watcher.log`. It records start, schedule, cancel, and chime. It does not copy Cursor’s logs.
 
 ## If it stays quiet
 
