@@ -58,6 +58,14 @@ launchctl kickstart -k "gui/$(id -u)/local.cursor-approve-please"
 
 The watcher log is `~/.local/state/cursor-approve-please/watcher.log`. It records start, schedule, cancel, and chime. It does not copy Cursor’s logs.
 
+## If it stays quiet
+
+1. Run the check command above. It should list one or more renderer logs. “cursor logs not found” means Cursor has not written logs yet, or the log folder moved.
+2. Open the watcher log. A waiting card adds `scheduled`, then `chime`. A click adds `cancelled`.
+3. If the card is on screen and the log never says `scheduled`, Cursor changed the line this project watches. Open an issue and include the Cursor version. Do not paste a renderer log. It can contain private text from the chat.
+
+Cursor users have asked for a real “waiting for approval” hook [on the forum](https://forum.cursor.com/t/fire-a-hook-when-agent-waits-for-command-tool-approval/166947). This project is the Mac workaround until that exists.
+
 ## Uninstall
 
 ```sh
