@@ -17,7 +17,7 @@ Cursor does not yet offer a hook for “waiting for approval,” so this watches
 ## Install
 
 ```sh
-git clone https://github.com/abhinavambient/cursor-approve-please.git
+git clone https://github.com/abhinavrondi/cursor-approve-please.git
 cd cursor-approve-please
 ./install.sh
 ```
